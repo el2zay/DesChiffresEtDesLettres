@@ -225,9 +225,9 @@ class _MainAppState extends State<MainApp> {
                                     child: GridView.builder(
                                       itemCount: motTrouves.length,
                                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 6,
+                                        crossAxisCount: 4,
                                         childAspectRatio: 2,
-                                        crossAxisSpacing: 10,
+                                        crossAxisSpacing: 8,
                                       ),
                                       itemBuilder: (context, index) {
                                         return Card(
@@ -432,10 +432,16 @@ class _MainAppState extends State<MainApp> {
                                 usedLettres.clear();
                                 motTrouves.clear();
                                 lettres = choisirLettres();
-                                // lePlusLong = await lePlusLongMot(lettres);
-                                // print(lePlusLong);
                               });
-                              startTimer();
+
+                              trouverMotsPossibles(lettres).then((result) {
+                                setState(() {
+                                  lePlusLong = result;
+                                });
+
+                                print(lePlusLong);
+                                startTimer();
+                              });
                             },
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all(
