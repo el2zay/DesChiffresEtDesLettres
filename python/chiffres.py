@@ -54,3 +54,5 @@ def jeu_chiffres():
             print(f"Écart par rapport à la cible : {difference}")
     except Exception as e:
         print("Erreur dans l'expression :", e)
+
+jeu_chiffres()

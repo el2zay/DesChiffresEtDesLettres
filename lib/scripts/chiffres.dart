@@ -2,6 +2,8 @@
 
 import 'dart:math';
 
+import 'package:math_expressions/math_expressions.dart';
+
 const petits = [
   1,
   2,
@@ -32,6 +34,7 @@ const grands = [
   100
 ];
 
+// Tirage de 6 chiffres aléatoires et d'une cible
 List tirageChiffres() {
   final Random random = Random();
   final List<int> tousLesNombres = [...petits, ...grands];
@@ -43,22 +46,10 @@ List tirageChiffres() {
   return [cible, tirage];
 }
 
-bool utiliserUniquementNombres(String chaine, List<int> nombres) {
-  final regex = RegExp(r'\d+');
-  final chiffresUtilises = regex.allMatches(chaine).map((match) => match.group(0)!).toList();
-  final temp = List<int>.from(nombres);
-  
-  try {
-    for (var c in chiffresUtilises) {
-      final n = int.parse(c);
-      if (temp.contains(n)) {
-        temp.remove(n);
-      } else {
-        return false;
-      }
-    }
-    return true;
-  } catch (e) {
-    return false;
-  }
+// Utilisation de la librairie math_expression pour calculer un string
+int calculer(String expression) {
+  Parser p = Parser();
+  Expression exp = p.parse(expression);
+  ContextModel cm = ContextModel();
+  return (exp.evaluate(EvaluationType.REAL, cm)).round();
 }
