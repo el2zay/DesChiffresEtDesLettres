@@ -2,11 +2,11 @@
 FLUTTER_ROOT=/Users/elie/Documents/flutter
 FLUTTER_APPLICATION_PATH=/Users/elie/Documents/DesChiffresEtDesLettres
 COCOAPODS_PARALLEL_CODE_SIGN=true
-FLUTTER_TARGET=/Users/elie/Documents/DesChiffresEtDesLettres/lib/main.dart
+FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=0.1.0
 FLUTTER_BUILD_NUMBER=0.1.0
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
-TREE_SHAKE_ICONS=false
+TREE_SHAKE_ICONS=true
 PACKAGE_CONFIG=/Users/elie/Documents/DesChiffresEtDesLettres/.dart_tool/package_config.json
