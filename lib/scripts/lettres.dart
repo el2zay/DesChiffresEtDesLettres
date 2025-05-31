@@ -1,9 +1,59 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: avoid_print
 
+import 'dart:io';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:chalkdart/chalkdart.dart';
+
+// Pour le mode console.
+void main() async {
+  print(chalk.pink("Bienvenue dans le jeu des lettres !"));
+  print(chalk.pink("Voici les lettres disponibles :"));
+  final lettresDisponibles = choisirLettres(); // Choisir 9 lettres aléatoires avec au moins 2 voyelles
+  final motsPossibles = await trouverMotsPossibles(lettresDisponibles); // Trouver les mots possibles avec les lettres disponibles
+  print(chalk.lightPink(lettresDisponibles.join(' ')));
+  print(chalk.hotPink("Essayez de former le mot le plus long possible avec ces lettres."));
+  print(chalk.deepPink("Appuyez sur Q pour quitter le jeu à tout moment."));
+  bool gagne = false; // Booléen qui vérifie si le joueur a gagné
+  bool enCours = false; // Booléen qui vérifie si le jeu est en cours
+
+  while (!gagne) {
+    if (!enCours) {
+      enCours = true;
+      print(chalk.pink("\nEntrez un mot :"));
+      String? inputMot = stdin.readLineSync()?.toUpperCase().trim(); // L'équivalent de input() en Python
+      if (inputMot == "Q") {
+        print(chalk.hotPink("\nÀ bientôt !"));
+        break;
+      }
+      if (inputMot != null && inputMot.isNotEmpty) {
+        bool existe = await existanceMot(inputMot); // Booléen qui vérifie si le mot existe dans le dictionnaire
+        if (existe) {
+          // Si le mot existe dans le dictionnaire
+          final lettresMap = lettresToDico(lettresDisponibles);
+          final motMap = lettresToDico(inputMot.split(''));
+          // On vérifie si le mot peut être formé avec les lettres disponibles et s'il est l"un de mots les plus longs
+          if (estInclus(motMap, lettresMap) && motsPossibles.contains(inputMot.toUpperCase())) {
+            print(chalk.hotPink("Bravo ! Le mot '$inputMot' est un des plus longs mots."));
+            gagne = true;
+          } else if (estInclus(motMap, lettresMap) && !motsPossibles.contains(inputMot.toUpperCase())) {
+            print(chalk.hotPink("Le mot '$inputMot' est correct mais n'est pas le plus long possible."));
+            enCours = false;
+          } else {
+            print(chalk.hotPink("Le mot '$inputMot' n'est pas formé avec les lettres disponibles."));
+            enCours = false;
+          }
+        } else {
+          enCours = false;
+          print(chalk.deepPink("Le mot '$inputMot' n'existe pas dans le dictionnaire."));
+        }
+      } else {
+        enCours = false;
+        print(chalk.hotPink("Aucun mot entré. Veuillez réessayer."));
+      }
+    }
+  }
+}
 
 List<String> lettres = [
   'A',
@@ -46,7 +96,7 @@ List<String> voyelles = [
 List<String> mot = [];
 List<Map<dynamic, dynamic>> dictionnaire = [];
 
-int nb_voyelles = 0;
+int nbVoyelles = 0;
 
 /* 
 ? Précision :
@@ -61,11 +111,11 @@ List<String> choisirLettres() {
   for (int i = 0; i < 9; i++) {
     mot.add(lettres[Random().nextInt(lettres.length)]);
     if (voyelles.contains(mot[i])) {
-      nb_voyelles += 1;
+      nbVoyelles += 1;
     }
   }
 
-  while (nb_voyelles < 2) {
+  while (nbVoyelles < 2) {
     mot.clear();
     choisirLettres();
   }
@@ -76,7 +126,9 @@ List<String> choisirLettres() {
 // Fonction qui vérfie si un mot existe dans le dictionnaire
 Future<bool> existanceMot(String mot) async {
   try {
-    final contents = await rootBundle.loadString('assets/dictionnaire.txt');
+    final file = File('assets/dictionnaire.txt');
+    final contents = await file.readAsString();
+
     List<String> mots = contents.split('\n');
     for (String m in mots) {
       if (m.trim().toUpperCase() == mot.toUpperCase()) {
@@ -85,7 +137,7 @@ Future<bool> existanceMot(String mot) async {
     }
     return false;
   } catch (e) {
-    debugPrint('Erreur lors de la vérification du mot: $e');
+    print('Erreur lors de la vérification du mot: $e');
     return false;
   }
 }
@@ -120,7 +172,8 @@ bool estInclus(Map mot1, Map mot2) {
 }
 
 Future<List<String>> trouverMotsPossibles(List<String> lettresDisponibles) async {
-  final contents = await rootBundle.loadString('assets/dictionnaire.txt'); // Chargement du dictionnaire
+  final file = File('assets/dictionnaire.txt'); // Chargement du dictionnaire
+  final contents = await file.readAsString(); // Chargement du dictionnaire
   List<String> tousLesMots = contents.split('\n'); // Lister tous les mots du dictionnaire sans le transformer en List<String>
 
   dictionnaire.clear(); // Vider le dictionnaire pour éviter de retrouver les mots de la partie précédente

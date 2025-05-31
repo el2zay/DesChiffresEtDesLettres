@@ -6,6 +6,7 @@ environment:
   sdk: ^3.6.0
 
 dependencies:
+  chalkdart: ^3.0.5
   flutter:
     sdk: flutter
   just_audio: any
