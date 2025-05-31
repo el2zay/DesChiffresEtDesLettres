@@ -8,7 +8,9 @@
 2. Intel : Faites un clic droit sur le fichier .app et sélectionnez "Ouvrir" puis "Ouvrir quand même" pour contourner les restrictions de sécurité macOS.  
 
 2. Apple Silicon : Suivez la vidéo si dessous.
-<video controls src="Installation.mov" title="Ouvrir le .app Apple Silicon"></video>
+
+https://github.com/user-attachments/assets/447717a8-3058-488e-9249-8e42ac4c4beb
+
 
 ## Règles du jeu
 * **Jeu lettres** : Le but est de former le plus de mots possible à partir de 9 lettres tirées au hasard. Chaque mot doit contenir au moins 2 lettres et être présent dans le dictionnaire français. Chaque lettre ne peut être utilisée qu'une seule fois par mot.
