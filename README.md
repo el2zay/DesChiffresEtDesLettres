@@ -2,14 +2,26 @@
 
 
 ## Installation
-### macOS
-1. Téléchargez le fichier .zip depuis les releases de ce repository. Puis décompressez-le.
+### macOS — Jeu Des Chiffres et Des Lettres
+1. Téléchargez le fichier Des.Chiffres.et.des.Lettres.app.zip depuis les releases de ce repository. Puis décompressez-le.
 
 2. Intel : Faites un clic droit sur le fichier .app et sélectionnez "Ouvrir" puis "Ouvrir quand même" pour contourner les restrictions de sécurité macOS.  
 
-2. Apple Silicon : Suivez la vidéo si dessous.
+2. Apple Silicon : Suivez la vidéo ci-dessous.
 
 https://github.com/user-attachments/assets/447717a8-3058-488e-9249-8e42ac4c4beb
+
+### macOS — Jeu Lettres (CLI) 
+> Le jeu lettre est aussi disponible en version console.
+1. Téléchargez le fichier Jeu.lettre.CLI.zip depuis les releases de ce repository. Puis décompressez-le.
+
+2. Ouvrez le terminal dans le dossier décompressé
+   
+3. Exécutez la commande `chmod +x ./lettres` Puis `./lettres`
+
+4. Suivez la vidéo ci-dessous
+
+https://github.com/user-attachments/assets/02715d0e-4dc1-4b92-a44e-eb044364eaf7
 
 
 ## Règles du jeu
