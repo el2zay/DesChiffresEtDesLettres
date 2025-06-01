@@ -23,6 +23,13 @@ https://github.com/user-attachments/assets/447717a8-3058-488e-9249-8e42ac4c4beb
 
 https://github.com/user-attachments/assets/02715d0e-4dc1-4b92-a44e-eb044364eaf7
 
+### Python — Jeu Chiffres (CLI)
+> L'interpréteur python3 est requis.
+
+1. Téléchargez le fichier python/chiffres.py
+ 
+2. Ouvrez votre terminal et exécutez la commande
+`python3 chiffres.py`
 
 ## Règles du jeu
 * **Jeu lettres** : Le but est de former le plus de mots possible à partir de 9 lettres tirées au hasard. Chaque mot doit contenir au moins 2 lettres et être présent dans le dictionnaire français. Chaque lettre ne peut être utilisée qu'une seule fois par mot.
