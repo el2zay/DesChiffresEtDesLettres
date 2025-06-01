@@ -122,6 +122,7 @@ class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
       setState(() {
         gameState = 0;
         wrong = false;
+        time = 40;
 
         if (_tabController.index == 0) {
           lettres.clear();
@@ -374,7 +375,10 @@ class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
                                   if (operateurs.contains(element)) {
                                     usedOperateurs.remove(element);
                                   } else {
-                                    usedChiffres.removeAt(index);
+                                    if (usedChiffres.isNotEmpty) {
+                                      int originalIndex = chiffres.indexOf(element);
+                                      usedChiffres.remove(originalIndex);
+                                    }
                                   }
                                 }
                               });
@@ -531,7 +535,7 @@ class _MainAppState extends State<MainApp> with SingleTickerProviderStateMixin {
                   fit: BoxFit.contain,
                 ),
               ),
-            ), 
+            ),
         ],
       );
     } else {

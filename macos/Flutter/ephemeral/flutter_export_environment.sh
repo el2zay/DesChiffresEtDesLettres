@@ -3,7 +3,7 @@
 export "FLUTTER_ROOT=/Users/elie/Documents/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/elie/Documents/DesChiffresEtDesLettres"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=/Users/elie/Documents/DesChiffresEtDesLettres/lib/scripts/lettres.dart"
+export "FLUTTER_TARGET=/Users/elie/Documents/DesChiffresEtDesLettres/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=0.1.0"
 export "FLUTTER_BUILD_NUMBER=0.1.0"

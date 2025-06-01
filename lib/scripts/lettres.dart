@@ -174,11 +174,12 @@ bool estInclus(Map mot1, Map mot2) {
 Future<List<String>> trouverMotsPossibles(List<String> lettresDisponibles) async {
   final file = File('assets/dictionnaire.txt'); // Chargement du dictionnaire
   final contents = await file.readAsString(); // Chargement du dictionnaire
-  List<String> tousLesMots = contents.split('\n'); // Lister tous les mots du dictionnaire sans le transformer en List<String>
+
+  List<String> mots = contents.split('\n'); // Lister tous les mots du dictionnaire sans le transformer en List<String>
 
   dictionnaire.clear(); // Vider le dictionnaire pour éviter de retrouver les mots de la partie précédente
 
-  for (String mot in tousLesMots) {
+  for (String mot in mots) {
     mot = mot.trim().toUpperCase(); // Les lettres en minuscules deviennent majuscules
     var dico = {};
     for (int i = 0; i < mot.length; i++) {
@@ -197,8 +198,8 @@ Future<List<String>> trouverMotsPossibles(List<String> lettresDisponibles) async
   List<String> motsPossibles = [];
 
   // On parcourt tous les mots du dictionnaire et vérifier s'ils peuvent être formés avec les lettres disponibles
-  for (int i = 0; i < tousLesMots.length; i++) {
-    String mot = tousLesMots[i].trim().toUpperCase(); // On prend chaque mot du dictionnaire, on le transforme en majuscules et on enlève les espaces
+  for (int i = 0; i < mots.length; i++) {
+    String mot = mots[i].trim().toUpperCase(); // On prend chaque mot du dictionnaire, on le transforme en majuscules et on enlève les espaces
 
     if (estInclus(dictionnaire[i], lettresMap)) {
       // On vérifie si le mot peut être formé avec les lettres disponibles
